@@ -1,0 +1,68 @@
+{
+  "confidence=0.1,complexity=0": {
+    "detected_images": 10,
+    "coordinate_MAE": 0.04737906637716002,
+    "coordinate_RMSE": 0.05775579821436659,
+    "coordinate_max_abs": 0.15058585582466738,
+    "coordinates_within_1e-3": 15,
+    "angle_MAE_degrees": 6.788544131551012,
+    "angle_RMSE_degrees": 10.707271814716718,
+    "angle_max_abs_degrees": 52.80246533683755,
+    "angles_within_0.1deg": 1
+  },
+  "confidence=0.1,complexity=1": {
+    "detected_images": 10,
+    "coordinate_MAE": 0.047804938634353346,
+    "coordinate_RMSE": 0.05761259878749571,
+    "coordinate_max_abs": 0.1499534072456779,
+    "coordinates_within_1e-3": 14,
+    "angle_MAE_degrees": 4.845904582459829,
+    "angle_RMSE_degrees": 8.266060234991173,
+    "angle_max_abs_degrees": 72.66428965320652,
+    "angles_within_0.1deg": 7
+  },
+  "confidence=0.5,complexity=0": {
+    "detected_images": 10,
+    "coordinate_MAE": 0.04724324972794773,
+    "coordinate_RMSE": 0.057625593735459696,
+    "coordinate_max_abs": 0.15660233376713412,
+    "coordinates_within_1e-3": 13,
+    "angle_MAE_degrees": 6.763628770564851,
+    "angle_RMSE_degrees": 10.66096285771084,
+    "angle_max_abs_degrees": 53.56934905438264,
+    "angles_within_0.1deg": 2
+  },
+  "confidence=0.5,complexity=1": {
+    "detected_images": 9,
+    "coordinate_MAE": 0.04533865747721115,
+    "coordinate_RMSE": 0.054465397620148674,
+    "coordinate_max_abs": 0.12503753721487385,
+    "coordinates_within_1e-3": 14,
+    "angle_MAE_degrees": 3.6815350189320983,
+    "angle_RMSE_degrees": 4.753542381684465,
+    "angle_max_abs_degrees": 17.185388413971246,
+    "angles_within_0.1deg": 6
+  },
+  "confidence=0.8,complexity=0": {
+    "detected_images": 10,
+    "coordinate_MAE": 0.0473448146665196,
+    "coordinate_RMSE": 0.05768848251061623,
+    "coordinate_max_abs": 0.15133185265751498,
+    "coordinates_within_1e-3": 18,
+    "angle_MAE_degrees": 6.657058273241941,
+    "angle_RMSE_degrees": 10.483209883514167,
+    "angle_max_abs_degrees": 51.12582631496507,
+    "angles_within_0.1deg": 3
+  },
+  "confidence=0.8,complexity=1": {
+    "detected_images": 9,
+    "coordinate_MAE": 0.04566271199959659,
+    "coordinate_RMSE": 0.0550785643191439,
+    "coordinate_max_abs": 0.1257848191905667,
+    "coordinates_within_1e-3": 16,
+    "angle_MAE_degrees": 3.8721796447815553,
+    "angle_RMSE_degrees": 5.150447668668124,
+    "angle_max_abs_degrees": 26.8085910877885,
+    "angles_within_0.1deg": 2
+  }
+}

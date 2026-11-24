@@ -1,0 +1,19 @@
+{
+  "mediapipe_version": "0.10.21",
+  "rows_detected": 10,
+  "rows_expected": 10,
+  "coordinates": {
+    "n": 630,
+    "MAE": 0.047804938634353346,
+    "RMSE": 0.05761259878749571,
+    "max_abs": 0.1499534072456779,
+    "within_1e-3": 14
+  },
+  "angles_degrees": {
+    "n": 260,
+    "MAE": 4.845904582459829,
+    "RMSE": 8.266060234991173,
+    "max_abs": 72.66428965320652,
+    "within_0.1deg": 7
+  }
+}

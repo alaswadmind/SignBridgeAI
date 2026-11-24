@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101323">
+  <title>SignBridge — مترجم الإشارة العربية</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='signbridge.css') }}">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="SignBridge">
+      <span class="brand-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M13.5 19V9.8a2.7 2.7 0 0 1 5.4 0v8.3-11a2.7 2.7 0 0 1 5.4 0v11.3-9a2.7 2.7 0 0 1 5.4 0v11.1-5.1a2.7 2.7 0 0 1 5.4 0v10.4c0 7.2-4.7 11.9-11.9 11.9h-1.8c-4.1 0-7.4-1.8-9.8-5.1l-5.2-7.2a2.8 2.8 0 0 1 4.5-3.3l2.6 3.3V19Z" transform="translate(-2 -2) scale(.94)"/><path d="M8 11.5A14 14 0 0 1 18.5 5" class="brand-spark"/></svg></span>
+      <span class="brand-copy"><strong>SignBridge</strong><small>لغة الإشارة العربية</small></span>
+    </a>
+    <div class="topbar-right"><span class="model-chip"><i></i> نموذج الإحداثيات جاهز</span><a class="nav-link" href="#how">كيف يعمل</a></div>
+  </header>
+
+  <main id="top" class="page-shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> تواصل أقرب، بإشارة واحدة</div>
+        <h1>حوّل الإشارة<br><span>إلى كلمة عربية.</span></h1>
+        <p>ضع يدك أمام الكاميرا. يلتقط SignBridge معالم اليد، يحوّلها إلى 89 ميزة هندسية، ثم يتعرّف على الحرف ويضيفه إلى مساحة الكتابة.</p>
+        <div class="hero-facts"><span><b>21</b> معلم يد</span><span class="fact-divider"></span><span><b>26</b> زاوية هندسية</span><span class="fact-divider"></span><span><b>32</b> إشارة</span></div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orb orb-a"></div><div class="orb orb-b"></div><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+        <div class="hero-letter">ع<span>•</span></div>
+        <div class="art-label art-label-top"><span class="pulse-mini"></span> 89 ميزة هندسية</div>
+        <div class="art-label art-label-bottom"><span class="sparkle">✦</span> من الحركة إلى المعنى</div>
+      </div>
+    </section>
+
+    <section class="workspace" aria-label="مترجم الإشارة">
+      <div class="section-heading"><div><span class="section-kicker">مساحة الترجمة</span><h2>ابدأ من الكاميرا</h2></div><div class="live-status" id="cameraStatus"><span class="status-dot"></span><span id="cameraStatusText">بانتظار تشغيل الكاميرا</span></div></div>
+
+      <div class="studio-grid">
+        <article class="panel camera-panel">
+          <div class="panel-heading"><div class="panel-title"><span class="mini-icon camera-icon">◎</span><div><h3>معاينة مباشرة</h3><p>وجّه راحة يدك نحو الكاميرا</p></div></div><span class="live-badge" id="liveBadge"><i></i> مباشر</span></div>
+          <div class="camera-stage" id="cameraStage">
+            <video id="cameraVideo" autoplay muted playsinline></video>
+            <canvas id="landmarkOverlay"></canvas>
+            <div class="camera-placeholder" id="cameraPlaceholder">
+              <div class="placeholder-ring"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="11" width="38" height="27" rx="6"/><circle cx="24" cy="24.5" r="8"/><path d="m15 11 3-5h12l3 5"/></svg></div>
+              <strong>مساحة الكاميرا</strong><span>اسمح بالوصول إلى الكاميرا لبدء الترجمة</span>
+            </div>
+            <div class="camera-corner corner-tr"></div><div class="camera-corner corner-bl"></div>
+            <div class="camera-overlay-label"><span class="scan-line"></span><span id="frameLabel">تحليل الإطار</span></div>
+          </div>
+          <div class="camera-controls">
+            <button class="button button-primary" id="startCamera"><span class="button-icon">▶</span> تشغيل الكاميرا</button>
+            <button class="button button-secondary" id="stopCamera" disabled>إيقاف</button>
+            <span class="camera-hint" id="cameraHint">تعمل الكاميرا على هذا الجهاز فقط</span>
+          </div>
+          <div class="camera-metrics">
+            <div class="metric"><span class="metric-symbol violet">✳</span><div><b id="metricLandmarks">— / 21</b><small>معالم مرصودة</small></div></div>
+            <div class="metric"><span class="metric-symbol aqua">⌁</span><div><b id="metricFeatures">— / 89</b><small>ميزة جاهزة</small></div></div>
+            <div class="metric"><span class="metric-symbol orange">◷</span><div><b id="metricLatency">—</b><small>زمن الاستجابة</small></div></div>
+          </div>
+        </article>
+
+        <article class="panel recognition-panel">
+          <div class="panel-heading"><div class="panel-title"><span class="mini-icon target-icon">✦</span><div><h3>الحرف المتعرّف عليه</h3><p>يتحدّث مع كل إشارة ثابتة</p></div></div><span class="class-count">فئة <b id="classId">—</b></span></div>
+          <div class="prediction-card" id="predictionCard">
+            <div class="prediction-halo"></div><span class="prediction-caption">الإشارة الحالية</span>
+            <div class="prediction-letter" id="predictionLetter">—</div>
+            <div class="prediction-name" id="predictionName">في انتظار إشارة</div>
+            <div class="confidence-line"><span>ثقة النموذج</span><b id="confidenceValue">—</b></div>
+            <div class="confidence-track"><span id="confidenceBar"></span></div>
+          </div>
+          <div class="alternatives-head"><span>احتمالات أخرى</span><span>أفضل 3</span></div>
+          <div id="candidateList" class="candidate-list"><div class="candidate-empty">ستظهر النتائج هنا عند اكتشاف اليد</div></div>
+          <button class="button button-add" id="appendLetter" disabled><span>＋</span> أضف الحرف إلى النص</button>
+          <p class="model-note"><span>ⓘ</span> المعاينة تساعدك على قراءة النتيجة؛ راجع الحرف قبل إضافته.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="writing-panel panel" id="writing">
+      <div class="writing-heading"><div class="panel-title"><span class="mini-icon writing-icon">✎</span><div><h3>مساحة الكتابة</h3><p>اجمع الإشارات لتكوين نصك</p></div></div><span class="word-count"><b id="characterCount">0</b> حرف</span></div>
+      <textarea id="textOutput" dir="rtl" placeholder="سيظهر النص الذي تكتبه هنا…" aria-label="النص المترجم"></textarea>
+      <div class="writing-footer"><div class="writing-tools"><button class="tool-button" id="spaceButton" title="إضافة مسافة">مسافة</button><button class="tool-button" id="backspaceButton" title="حذف آخر حرف">⌫ حذف</button><button class="tool-button" id="clearButton" title="مسح النص">مسح الكل</button></div><div class="writing-actions"><button class="button button-copy" id="copyButton">⧉ نسخ النص</button></div></div>
+    </section>
+
+    <details class="data-panel panel">
+      <summary><div class="panel-title"><span class="mini-icon data-icon">▤</span><div><h3>تجهيز بيانات من الكاميرا</h3><p>سجّل متجهات 89 ميزة بصيغة CSV لاستخدامها في مراجعة البيانات</p></div></div><span class="details-chevron">⌄</span></summary>
+      <div class="data-content">
+        <div class="data-intro"><span class="data-indicator"></span><span>يُحفظ صف لكل إطار تُكتشف فيه اليد. اختر التصنيف الصحيح أو اتركه فارغاً للبيانات غير المصنفة.</span></div>
+        <div class="data-controls"><label class="select-wrap">التصنيف (اختياري)<select id="recordLabel"><option value="">بدون تصنيف</option>{% for cls in classes %}<option value="{{ cls.id }}">{{ cls.arabic }} — {{ cls.name }} ({{ cls.id }})</option>{% endfor %}</select></label><button class="button button-record" id="recordButton" disabled><span class="record-dot"></span> ابدأ تسجيل العينة</button><button class="button button-secondary" id="downloadCsv" disabled>تنزيل CSV <span>↓</span></button><span class="record-count" id="recordCount">0 إطار مسجل</span></div>
+        <div class="feature-details"><div><b>ترتيب المتجه:</b> الأعمدة 4096–4158 إحداثيات X,Y,Z ثم 4159–4184 زوايا بالدرجات.</div><button class="text-button" id="toggleFeatures">عرض آخر متجه</button><pre id="featurePreview" hidden>لا توجد ميزات بعد.</pre></div>
+      </div>
+    </details>
+
+    <section class="how-section" id="how"><div><span class="section-kicker">خط الإنتاج</span><h2>من إطار إلى حرف، في ثلاث خطوات</h2></div><div class="steps-grid"><div class="step-card"><span class="step-number">01</span><div class="step-icon">◉</div><h3>التقاط الإشارة</h3><p>تلتقط الكاميرا الإطار محلياً، ثم يُرسل إلى الخادم المحلي للتحليل.</p></div><div class="step-card"><span class="step-number">02</span><div class="step-icon">✳</div><h3>استخراج المعالم</h3><p>MediaPipe ينتج 21 نقطة؛ تُحوّل إلى 63 إحداثية و26 زاوية حسب ترتيب التدريب.</p></div><div class="step-card"><span class="step-number">03</span><div class="step-icon">ع</div><h3>تعرّف وكتابة</h3><p>يطبّق النموذج الـMLP والـStandardScaler ثم يعرض الحرف العربي لتضيفه إلى النص.</p></div></div></section>
+
+    <footer class="footer"><a class="brand footer-brand" href="#top"><span class="brand-mark small-mark">✳</span><span class="brand-copy"><strong>SignBridge</strong><small>ترجمة الإشارة، خطوة بخطوة</small></span></a><span>معالجة محلية على جهازك · النموذج المدرب على 89 ميزة</span></footer>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+  <script>window.SIGNBRIDGE_FEATURE_COLS = {{ feature_cols|tojson }};</script>
+  <script src="{{ url_for('static', filename='signbridge.js') }}" defer></script>
+</body>
+</html>

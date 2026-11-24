@@ -1,0 +1,86 @@
+{
+  "staticMode=True,confidence=0.1": {
+    "detected_images": 10,
+    "raw_normalized_coords": {
+      "MAE": 0.04780493863435334,
+      "RMSE": 0.0576125987874957,
+      "max_abs": 0.1499534072456779,
+      "within_0.001": 14
+    },
+    "CVZone_pixel_lmList_normalized": {
+      "MAE": 0.04755876807513768,
+      "RMSE": 0.057397056256498095,
+      "max_abs": 0.15016081479496113,
+      "within_0.001": 17
+    },
+    "angles_from_raw_degrees": {
+      "MAE": 4.845904582459829,
+      "RMSE": 8.266060234991173,
+      "max_abs": 72.66428965320652,
+      "within_0.1": 7
+    }
+  },
+  "staticMode=True,confidence=0.5": {
+    "detected_images": 9,
+    "raw_normalized_coords": {
+      "MAE": 0.04533865747721114,
+      "RMSE": 0.05446539762014867,
+      "max_abs": 0.12503753721487385,
+      "within_0.001": 14
+    },
+    "CVZone_pixel_lmList_normalized": {
+      "MAE": 0.04504194574780471,
+      "RMSE": 0.0541133041810122,
+      "max_abs": 0.12837288025257942,
+      "within_0.001": 14
+    },
+    "angles_from_raw_degrees": {
+      "MAE": 3.6815350189320983,
+      "RMSE": 4.753542381684465,
+      "max_abs": 17.185388413971246,
+      "within_0.1": 6
+    }
+  },
+  "staticMode=False,confidence=0.1": {
+    "detected_images": 10,
+    "raw_normalized_coords": {
+      "MAE": 0.03979433824249558,
+      "RMSE": 0.05378163713887775,
+      "max_abs": 0.21322518716286573,
+      "within_0.001": 17
+    },
+    "CVZone_pixel_lmList_normalized": {
+      "MAE": 0.03972241653723767,
+      "RMSE": 0.053642245555009994,
+      "max_abs": 0.21093911248710004,
+      "within_0.001": 19
+    },
+    "angles_from_raw_degrees": {
+      "MAE": 5.041113047522248,
+      "RMSE": 6.904867717873546,
+      "max_abs": 26.32465409670309,
+      "within_0.1": 1
+    }
+  },
+  "staticMode=False,confidence=0.5": {
+    "detected_images": 10,
+    "raw_normalized_coords": {
+      "MAE": 0.039748284824594866,
+      "RMSE": 0.053745231708589296,
+      "max_abs": 0.21235153208207044,
+      "within_0.001": 16
+    },
+    "CVZone_pixel_lmList_normalized": {
+      "MAE": 0.03964003205670593,
+      "RMSE": 0.053635860273861635,
+      "max_abs": 0.21093911248710004,
+      "within_0.001": 20
+    },
+    "angles_from_raw_degrees": {
+      "MAE": 5.059118887734679,
+      "RMSE": 6.907394375112558,
+      "max_abs": 26.35582854051575,
+      "within_0.1": 1
+    }
+  }
+}
