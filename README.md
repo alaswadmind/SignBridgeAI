@@ -1,21 +1,21 @@
-﻿# SignBridge AI
+# SignBridge AI
 
-A local web prototype for recognizing a set of Arabic sign-language hand signs from a webcam frame. The trained model consumes the same 89 coordinate and angle features used during training; it does not classify image pixels directly.
+نموذج ويب محلي للتعرّف بصريًا على مجموعة من إشارات لغة الإشارة العربية باستخدام الكاميرا. يعتمد النموذج المدرّب على **89 ميزة من الإحداثيات والزوايا** المستخدمة أثناء التدريب؛ فهو لا يصنّف بكسلات الصورة مباشرةً.
 
-## Pipeline
+## خط الإنتاج
 
 ```text
-Browser camera frame → MediaPipe Hands (21 landmarks)
-→ 63 XYZ coordinates + 26 hand angles (89 features)
-→ training StandardScaler → coordinate-based SignMLP (32 classes)
-→ Arabic label and editable text area
+إطار من كاميرا المتصفح ← MediaPipe Hands (21 معلمًا لليد)
+← 63 إحداثية XYZ + 26 زاوية (89 ميزة)
+← StandardScaler المستخدم في التدريب ← نموذج SignMLP (32 فئة)
+← تسمية عربية ومساحة نص قابلة للتحرير
 ```
 
-The current prototype recognizes isolated classes. It does not translate sentences or infer full linguistic context. Natural Language Processing and contextual interpretation are future research and development directions.
+النموذج الحالي يتعرّف على فئات أو إشارات منفردة. لا يترجم الجمل ولا يستنتج السياق اللغوي الكامل. معالجة اللغة الطبيعية وفهم السياق مساران مقترحان للبحث والتطوير مستقبلًا.
 
-## Run locally on Windows
+## التشغيل محليًا على Windows
 
-The web server needs Python, Flask, OpenCV, NumPy, scikit-learn, and PyTorch. The MediaPipe worker is launched as a separate process and is tested with Python 3.11.
+يحتاج خادم الويب إلى Python وFlask وOpenCV وNumPy وscikit-learn وPyTorch. يعمل مستخرج MediaPipe كعملية منفصلة، وقد اختُبر على Python 3.11.
 
 ```powershell
 python -m pip install -r requirements-web.txt
@@ -23,18 +23,18 @@ py -3.11 -m pip install -r requirements-mediapipe-worker.txt
 python .\app.py
 ```
 
-Open <http://127.0.0.1:5000>, choose **تشغيل الكاميرا**, and allow camera access. Keep the PowerShell window open while using the app. If PowerShell blocks `.ps1` files, running `python .\app.py` avoids the execution-policy issue.
+افتح <http://127.0.0.1:5000>، ثم اضغط **تشغيل الكاميرا** واسمح للمتصفح باستخدامها. اترك نافذة PowerShell مفتوحة أثناء استخدام الموقع. إذا منع PowerShell تشغيل ملفات `.ps1`، شغّل التطبيق مباشرةً بالأمر `python .\app.py`.
 
-Set `SIGNBRIDGE_MEDIAPIPE_PYTHON` to a Python executable path if the `py -3.11` launcher is unavailable. The camera is accessed by the browser; remote devices require HTTPS.
+إذا لم يتوفر مشغّل `py -3.11`، عيّن المتغير `SIGNBRIDGE_MEDIAPIPE_PYTHON` إلى مسار مفسّر Python المثبّت عليه MediaPipe. يصل المتصفح إلى الكاميرا؛ ويتطلب استخدام الموقع من أجهزة أخرى اتصال HTTPS.
 
-## Model files
+## ملفات النموذج
 
-`signbridge_model/` contains the supplied MLP checkpoint, fitted scaler, label encoder, Arabic label map, and training notebook. The checkpoint feature order is validated at startup. The pickled scaler and encoder were created with scikit-learn 1.6.1; using another version may emit a compatibility warning.
+يحتوي المجلد `signbridge_model/` على نقطة حفظ نموذج MLP، وملف StandardScaler المدرّب، وLabelEncoder، وخريطة الفئات العربية، ودفتر التدريب. يتحقق التطبيق عند التشغيل من ترتيب ميزات النموذج. حُفظ ملفا StandardScaler وLabelEncoder باستخدام scikit-learn 1.6.1؛ وقد يظهر تحذير توافق عند استخدام إصدار مختلف.
 
-## Development notes
+## ملفات التطوير
 
-- `aslad_feature_extraction.py` contains the reusable coordinate and angle extraction pipeline.
-- `mediapipe_worker.py` keeps MediaPipe loaded in a persistent worker process.
-- `ASLAD_REVERSE_ENGINEERING_REPORT.md` documents the feature reconstruction and its validation limits.
-- `exports/` contains the short promotional video, SRT captions, and suggested Arabic voice-over text.
-- The Flask development server is intended for local prototyping, not production deployment.
+- يحتوي `aslad_feature_extraction.py` على خط استخراج الإحداثيات والزوايا القابل لإعادة الاستخدام.
+- يبقي `mediapipe_worker.py` مكتبة MediaPipe محمّلة في عملية مستمرة.
+- يوثّق `ASLAD_REVERSE_ENGINEERING_REPORT.md` إعادة بناء الميزات وحدود التحقق منها.
+- يحتوي `exports/` على فيديو تعريفي قصير وملف ترجمة SRT ونص تعليق صوتي عربي مقترح.
+- خادم Flask المرفق للتجربة المحلية، وليس للنشر الإنتاجي.
